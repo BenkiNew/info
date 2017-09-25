@@ -1,2 +1,2 @@
 # info
-linux bash
+Step by step gude
