@@ -1,0 +1,2 @@
+# info
+linux bash
