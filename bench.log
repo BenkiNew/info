@@ -1,3 +1,5 @@
+***wget https://raw.githubusercontent.com/hidden-refuge/bench-sh-2/master/bench.sh -O - -o /dev/null | bash
+
 Benchmark started on Tue Sep 26 14:32:16 EEST 2017
 Full benchmark log: /root/bench.log
 
