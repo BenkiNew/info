@@ -24,8 +24,9 @@ function waitForHostNameElements()
         targetNodes.each ( function () {
             // link not added yet
             if ($(this).html().indexOf('sftp://') < 1) {
-                // Retrieve hostname
-                var hostname = $(this).text().replace("Public DNS:", "").trim();
+                // Retrieve hostname AWS connect ec2-user@ec2-52-57-114-147.eu-central-1.compute.amazonaws.com
+                var hostname = "ec2-52-57-114-147.eu-central-1.compute.amazonaws.com";
+                //var hostname = $(this).text().replace("Public DNS:", "").trim();
                 // Change the username if needed
                 var username = "ec2-user"; 
                 $(this).append(' &ndash; <a href="sftp://' + username + '@' + hostname + '/">Open in WinSCP</a>');
