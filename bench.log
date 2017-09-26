@@ -1,0 +1,45 @@
+Benchmark started on Tue Sep 26 14:32:16 EEST 2017
+Full benchmark log: /root/bench.log
+
+System Info
+-----------
+Processor	: Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz
+CPU Cores	: 1
+Frequency	: 2400.033 MHz
+Memory		: 989 MB
+Swap		:  MB
+Uptime		: 23:45,
+
+OS		: \S
+Arch		: x86_64 (64 Bit)
+Kernel		: 4.13.3-1.el7.elrepo.x86_64
+Hostname	: benkinew.info
+
+
+Speedtest (IPv4 only)
+---------------------
+Your public IPv4 is 52.57.114.147
+
+Location		Provider	Speed
+CDN			Cachefly	43.6MB/s
+
+Atlanta, GA, US		Coloat		3.50MB/s 
+Dallas, TX, US		Softlayer	3.22MB/s 
+Seattle, WA, US		Softlayer	2.75MB/s 
+San Jose, CA, US	Softlayer	3.14MB/s 
+Washington, DC, US	Softlayer 	6.57MB/s 
+
+Tokyo, Japan		Linode		3.80MB/s 
+Singapore 		Softlayer	1.96MB/s 
+
+Rotterdam, Netherlands	id3.net		5.89MB/s
+Haarlem, Netherlands	Leaseweb	6.39MB/s 
+
+
+Disk Speed
+----------
+I/O (1st run)	: 67.8 MB/s
+I/O (2nd run)	: 64.3 MB/s
+I/O (3rd run)	: 64.3 MB/s
+Average I/O	: 65.4667 MB/s
+

@@ -1,7 +1,7 @@
-***Linux from Begining/Testing***
+***Linux from Beginning/Testing***
 
 //////////////
-man [command] #help 
+man [command] #help
 shift UP|DOWN
 
 reboot
@@ -64,8 +64,8 @@ vi ifcfg-enp0s3 #edit lan
 #mask 255.255.255.0 /24
 #IP addres 192.168.2.230
 #IP router 192.168.2.1
-	
-[root@localhost ~]# cat /etc/sysconfig/network-scripts/ifcfg-enp0s3 
+
+[root@localhost ~]# cat /etc/sysconfig/network-scripts/ifcfg-enp0s3
 		TYPE=Ethernet
 		BOOTPROTO=static
 		IPADDR=192.168.2.230
@@ -90,13 +90,13 @@ vi ifcfg-enp0s3 #edit lan
 service network restart [OK]
 
 vi /etc/resolv.conf #edit DNS
-	search [name] #local 
+	search [name] #local
 	nameserver 192.168.2.1 #IP router
 
-	
+
 nmcli d #connect lan
 
-	
+
 ***************************************************************
 ///USERS///
 
@@ -109,8 +109,8 @@ root    ALL=(ALL)       ALL
 [users] ALL=(ALL) ALL
 
 ///SSH no root///
-	benkinew@srv:/root$ vi /etc/ssh/sshd_config 
-	benkinew@srv:/root$ sudo vi /etc/ssh/sshd_config 
+	benkinew@srv:/root$ vi /etc/ssh/sshd_config
+	benkinew@srv:/root$ sudo vi /etc/ssh/sshd_config
 
 	Мы полагаем, что ваш системный администратор изложил вам основы
 	безопасности. Как правило, всё сводится к трём следующим правилам:
@@ -119,18 +119,18 @@ root    ALL=(ALL)       ALL
 		№2) Думайте, прежде что-то вводить.
 		№3) С большой властью приходит большая ответственность.
 
-	[sudo] пароль для benkinew: 
+	[sudo] пароль для benkinew:
 
-	
+
 # Authentication:
 PermitRootLogin no
 
 
 ///////access rights/////
 
-chown [users]:[group] [/dir/] #edit access 
+chown [users]:[group] [/dir/] #edit access
 	chown -R [users]:[group] [/dir/] #edit access all element
-	
+
 chmod [access lvl] [/dir/] #edit access lvl
 
 //////////YUM pacets///////////////
@@ -145,7 +145,7 @@ yum install -y #install pacets
 				bind-utils #nslookup
 				telnet
 				NetworkManager-tui #nmtui
-				
+
 yum provides [pacets] # pacets
 yum search [all] [name] #search pacets name
 
@@ -165,7 +165,7 @@ Adapter name
 	enp0s8	dmz #2
 	enp0s9	srv #3
 	enp0s10	user #4
-	
+
 
 nmcli c add type [ethernet] con-name [enp0s8] ifname [enp0s8] ip4 [192.168.250.1/24] #add interface
 nmcli device connect [enp0s8] #ON interface
@@ -176,7 +176,7 @@ nmcli device connect [enp0s8] #ON interface
     reboot
 
 
-iptables -L -v -n #rools 
+iptables -L -v -n #rools
 
 yum install iptables-services #yum pacets iptables
 
@@ -184,13 +184,13 @@ yum install iptables-services #yum pacets iptables
 	net.ipv4.ip_forward = 1
 
 iptables -A[конец цепочки] INPUT[сама цепочка] -i lo[интерефейс] -j ACCEPT[дествия правила] #весь входящий и исходящий трафик для lo
-iptables -A OUTPUT -o lo -j ACCEPT 
+iptables -A OUTPUT -o lo -j ACCEPT
 
 iptables -A OUTPUT -o [enp0s3] -j ACCEPT #входящий инет
 iptables -A INPUT -p icmp[протокол] -j ACCEPT #пинг на сервер
 iptables -A OUTPUT -p icmp[протокол] -j ACCEPT #пинг ис сервер
 iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED [состояния] -j ACCEPT #правила для соединений
-iptables -A OUTPUT -m conntrack --ctstate RELATED,ESTABLISHED [состояния] -j ACCEPT 
+iptables -A OUTPUT -m conntrack --ctstate RELATED,ESTABLISHED [состояния] -j ACCEPT
 
 iptables -A INPUT -p tcp -m conntrack --ctstate NEW -m tcp --dport 22 -j ACCEPT #SSH
 
@@ -231,14 +231,14 @@ root@srv:~# iptables -L -v -n
   291  iptables -A INPUT -p icmp -j ACCEP
   292  iptables -A INPUT -p icmp -j ACCEPT
   293  iptables -A OUTPUT -p icmp -j ACCEPT
-  294  iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT 
-  295  iptables -A OUTPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT 
-  296  iptables -A INPUT -p tcp -m conntrack --ctstate NEW -m tcp --dport 22 -j ACCEPT 
+  294  iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+  295  iptables -A OUTPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+  296  iptables -A INPUT -p tcp -m conntrack --ctstate NEW -m tcp --dport 22 -j ACCEPT
   297  iptables -P INPUT DROP
   298  iptables -P OUTPUT DROP
   299  iptables -P FORWARD DROP
-  300  iptables -t nat -A POSTROUTING -o enp0s3 -s 192.168.252.0/24 -j MASQUERADE 
-  301  iptables -A FORWARD -p icmp -j ACCEPT 
+  300  iptables -t nat -A POSTROUTING -o enp0s3 -s 192.168.252.0/24 -j MASQUERADE
+  301  iptables -A FORWARD -p icmp -j ACCEPT
   302  iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
   303  iptables -A FORWARD -s 192.168.252.0/24 -p tcp -m conntrack --ctstate NEW -m multiport --dports 80,443 -j ACCEPT
   304  iptables -A FORWARD -p tcp -m conntrack --ctstate NEW -m tcp --dport 53 -j ACCEPT
@@ -248,8 +248,8 @@ root@srv:~# iptables -L -v -n
   308  systemctl status iptables
   309  iptables -L -v -n
 
-  
-  
+
+
   ////////////DHCP//////////////
 nmcli general hostname [name] #edit hostname - srv.local
 nmcli c mod [enp0s3] ipv4.dns [192.168.2.1] #add dns server
@@ -283,42 +283,9 @@ cat /var/lib/dhcpd/dhcpd.leases #info dhcp client
 
 /etc/rsyslog.conf #edit log
 
-	# Save log DHCP 
+	# Save log DHCP
 local7.*                                                /var/log/dhcpd.log
 
 systemctl restart rsyslog
 systemctl restart dhcpd
 cat /var/log/dhcpd.log
-
-
-
-
-
-
-
-
-  
-  
-  
-
-
- 
-
-
-
-
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
