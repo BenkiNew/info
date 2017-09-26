@@ -1,11 +1,4 @@
-***Linux для начинающих***
-
-root
-xertam123
-
-benkinew
-verty123
-
+***Linux from Begining/Testing***
 
 //////////////
 man [command] #help 
